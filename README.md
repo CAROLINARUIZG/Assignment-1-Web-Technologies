@@ -54,7 +54,8 @@ A complete set of user stories in `docs/user_stories.md` covering:
 ### 3. Data Model
 A relational diagram in `docs/data_model.png` created with [dbdiagram.io](https://dbdiagram.io). It includes the following entities:
 - **Users** — id, name, email, password, role, created_at
-- **Events** — id, title, description, location, date, max_capacity, organizer_id (FK), category_id (FK), created_at
+- **Events** — id, title, description, location, date, max_capacity, status, organizer_id (FK), category_id (FK), created_at
 - **Categories** — id, name, description
 - **Registrations** — id, user_id (FK), event_id (FK), status, registered_at
 - **Reviews** — id, user_id (FK), event_id (FK), rating, comment, created_at
+- **Locations** - id, name, address, default_capacity
