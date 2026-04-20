@@ -1,29 +1,60 @@
-# Assignment 1 — User Stories, Data Model, and Landing Page
+# EventHub — Assignment 1
 
-Introduction
-The goal of this first assignment is to lay the foundation for your EventHub application by defining clear user stories, establishing a data model, and building a static landing page that represents the look and feel of your future application.
+**Course:** Web Technologies  
+**Semester:** 2026-10  
+**Due Date:** April 20, 2026
 
-What to Deliver
-1. Landing Page
-Build a static HTML page styled with Bootstrap that serves as the public-facing homepage for your EventHub application. The page must include:
+## Description
 
-A navigation bar with placeholder links to the main sections of the application (e.g., Events, Categories, Login, Sign Up).
-A hero section introducing EventHub with a brief description and a call-to-action button (e.g., “Browse Events”).
-An about section explaining what the platform does and who it is for.
-A contact section with placeholder contact information.
-A footer with basic information (team name, course, year).
-The page must be responsive and look clean on both desktop and mobile devices.
+EventHub is a university event management platform where community members can create, discover, and join campus events such as talks, workshops, sports activities, social gatherings, and study groups. This first assignment lays the foundation by defining user stories, a relational data model, and a static landing page.
 
-2. User Stories
-Write a complete set of user stories that capture the main functionalities of the EventHub application as described in the general project description. Each user story must follow the format:
+## Group Members
 
-As a [type of user], I want to [do something], so that [reason/benefit].
+| Name | Role |
+|------|------|
+| Jose Tomas Arevalo | Developer |
+| Matias Keller | Developer |
+| Maria Carolina Ruiz | Developer |
 
-Your stories should cover: - Event creation and management - Event discovery and browsing - Registration and waiting list behavior - Review and rating of past events - Administrative actions (moderation)
+## Repository Structure
 
-3. Data Model
-Define the data model for your application using a Relational Diagram. You can use dbdiagram.io or a similar tool.
+```
+Assignment-1-Web-Technologies/
+├── public_html/
+│   ├── index.html          # Landing page (Bootstrap)
+│   ├── style.css           # Custom styles
+│   └── images/
+│       ├── campus.jpg      # Hero background image
+│       └── univ.jpg        # About section image
+├── docs/
+│   ├── user_stories.md     # User stories (Markdown)
+│   └── data_model.png      # Relational data model diagram
+├── README.md               # This file
+└── .gitignore
+```
 
-The diagram must include: - All entities with their attributes and data types - Primary keys and foreign keys - Relationships between entities (one-to-many, many-to-many) - Cardinality notation
+## Deliverables
 
-Your model should reflect all the entities, attributes, and relationships that you identify as necessary to support the functionalities described in the project overview.
+### 1. Landing Page
+A static, responsive HTML page styled with Bootstrap located in `public_html/`. It includes:
+- Navigation bar with links to Events, Categories, Login, and Sign Up
+- Hero section with a call-to-action button ("Browse Events")
+- About section explaining the platform
+- Contact section with placeholder information
+- Footer with team name, course, and year
+
+### 2. User Stories
+A complete set of user stories in `docs/user_stories.md` covering:
+- Event creation and management
+- Event discovery and browsing
+- Registration and waiting list behavior
+- Review and rating of past events
+- Administrative actions (moderation)
+
+### 3. Data Model
+A relational diagram in `docs/data_model.png` created with [dbdiagram.io](https://dbdiagram.io). It includes the following entities:
+- **Users** — id, name, email, password, role, created_at
+- **Events** — id, title, description, location, date, max_capacity, organizer_id (FK), category_id (FK), created_at
+- **Categories** — id, name, description
+- **Registrations** — id, user_id (FK), event_id (FK), status, registered_at
+- **Reviews** — id, user_id (FK), event_id (FK), rating, comment, created_at
