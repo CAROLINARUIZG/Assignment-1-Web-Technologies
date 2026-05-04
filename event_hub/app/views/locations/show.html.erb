@@ -1,0 +1,13 @@
+<%= link_to "← Locations", locations_path, class: "text-decoration-none" %>
+<h1><%= @location.name %></h1>
+<p class="text-muted"><%= @location.address %></p>
+<p>Default capacity: <strong><%= @location.default_capacity %></strong></p>
+
+<h4 class="mt-4">Events at this location</h4>
+<ul class="list-group">
+  <% @events.each do |e| %>
+    <%= link_to event_path(e), class: "list-group-item list-group-item-action" do %>
+      <%= e.title %> — <%= e.start_date.strftime("%b %d") %>
+    <% end %>
+  <% end %>
+</ul>

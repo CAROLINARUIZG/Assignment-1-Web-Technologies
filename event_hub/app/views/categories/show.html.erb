@@ -1,0 +1,13 @@
+<%= link_to "← Categories", categories_path, class: "text-decoration-none" %>
+<h1><%= @category.name %></h1>
+<p class="text-muted"><%= @category.description %></p>
+
+<h4 class="mt-4">Events in this category</h4>
+<ul class="list-group">
+  <% @events.each do |e| %>
+    <%= link_to event_path(e), class: "list-group-item list-group-item-action d-flex justify-content-between" do %>
+      <span><%= e.title %> <small class="text-muted">— <%= e.location.name %></small></span>
+      <span class="badge bg-secondary"><%= e.status.titleize %></span>
+    <% end %>
+  <% end %>
+</ul>

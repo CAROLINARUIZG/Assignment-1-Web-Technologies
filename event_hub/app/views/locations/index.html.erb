@@ -1,0 +1,14 @@
+<h1 class="mb-4">Locations</h1>
+<div class="row g-3">
+  <% @locations.each do |loc| %>
+    <div class="col-md-6">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5><%= link_to loc.name, location_path(loc) %></h5>
+          <p class="text-muted mb-1"><%= loc.address %></p>
+          <small>Default capacity: <%= loc.default_capacity || "—" %></small>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

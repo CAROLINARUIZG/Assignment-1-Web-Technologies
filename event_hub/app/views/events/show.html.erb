@@ -1,0 +1,56 @@
+<div class="mb-3">
+  <%= link_to "← Back to events", events_path, class: "text-decoration-none" %>
+</div>
+
+<h1><%= @event.title %></h1>
+<p class="text-muted">
+  <span class="badge bg-primary"><%= @event.status.titleize %></span>
+  Organized by <%= link_to @event.organizer.name, user_path(@event.organizer) %>
+</p>
+
+<dl class="row">
+  <dt class="col-sm-3">Category</dt>
+  <dd class="col-sm-9"><%= link_to @event.category.name, category_path(@event.category) %></dd>
+
+  <dt class="col-sm-3">Location</dt>
+  <dd class="col-sm-9">
+    <%= link_to @event.location.name, location_path(@event.location) %> — <%= @event.location.address %>
+  </dd>
+
+  <dt class="col-sm-3">Start</dt>
+  <dd class="col-sm-9"><%= @event.start_date.strftime("%B %d, %Y at %H:%M") %></dd>
+
+  <dt class="col-sm-3">End</dt>
+  <dd class="col-sm-9"><%= @event.end_date.strftime("%B %d, %Y at %H:%M") %></dd>
+
+  <dt class="col-sm-3">Capacity</dt>
+  <dd class="col-sm-9"><%= @event.registrations.confirmed.count %> / <%= @event.max_capacity %> confirmed</dd>
+</dl>
+
+<h4 class="mt-4">Description</h4>
+<p><%= @event.description %></p>
+
+<h4 class="mt-4">Attendees (<%= @event.registrations.count %>)</h4>
+<ul class="list-group">
+  <% @event.registrations.includes(:user).each do |r| %>
+    <li class="list-group-item d-flex justify-content-between">
+      <span><%= r.user.name %></span>
+      <span class="badge bg-info text-dark"><%= r.status.titleize %></span>
+    </li>
+  <% end %>
+</ul>
+
+<h4 class="mt-4">Reviews</h4>
+<% if @event.reviews.any? %>
+  <% @event.reviews.includes(:user).each do |review| %>
+    <div class="card mb-2">
+      <div class="card-body">
+        <strong><%= review.user.name %></strong>
+        rated <%= "★" * review.rating %><%= "☆" * (5 - review.rating) %>
+        <p class="mb-0 mt-1"><%= review.comment %></p>
+      </div>
+    </div>
+  <% end %>
+<% else %>
+  <p class="text-muted">No reviews yet.</p>
+<% end %>
